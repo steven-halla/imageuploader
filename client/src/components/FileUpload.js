@@ -4,15 +4,15 @@ import axios from 'axios';
 export const FileUpload = () => {
   const [file, setFile] = useState('');
   const [filename, setFilename] = useState('Choose File');
-  const [uploadedFile, setUploadedFile] = useState({})
+  const [uploadedFile, setUploadedFile] = useState({});
 
-  const onChange = event => {
-    setFile(event.target.files[0]);
-    setFilename(event.target.files[0].name);
+  const onChange = e => {
+    setFile(e.target.files[0]);
+    setFilename(e.target.files[0].name);
   };
 
-  const onSubmit = async event => {
-    event.preventDefault();
+  const onSubmit = async e => {
+    e.preventDefault();
     const formData = new FormData();
     formData.append('file', file);
 
@@ -32,10 +32,10 @@ export const FileUpload = () => {
         console.log(err.response.data.msg);
       }
     }
-  }
+  };
 
   return (
-   <Fragment onSubmit={onSubmit}>
+   <div onSubmit={onSubmit}>
      <form action="">
        <div className="custom-file mb-4">
          <input type="file" className="custom-file-input" id="customFile" onChange={onChange}/>
@@ -45,6 +45,12 @@ export const FileUpload = () => {
        </div>
        <input type="submit" value="Upload" className="btn btn-primary btn-block mt-4"/>
      </form>
-   </Fragment>
-  )
-}
+     { uploadedFile ? <div className="row mt-5 " >
+        <div className="col-md-6 m-auto">
+          <h3 className="text-center">{ uploadedFile.fileName } </h3>
+          <img style={{ width: '100%' }} src={uploadedFile.filePath} alt=""/>
+        </div>
+       </div> : null }
+   </div>
+  );
+};
