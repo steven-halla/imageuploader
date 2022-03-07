@@ -5,6 +5,7 @@ export const FileUpload = () => {
   const [file, setFile] = useState('');
   const [filename, setFilename] = useState('Choose File');
   const [uploadedFile, setUploadedFile] = useState({});
+  const [message, setMessage] = useState('');
 
   const onChange = e => {
     setFile(e.target.files[0]);
@@ -26,11 +27,12 @@ export const FileUpload = () => {
 
       setUploadedFile({fileName, filePath});
       // setUploadedFile({fileName: fileName, filePath: filePath});
+      setMessage('File uploaded')
     }catch(err) {
       if(err.response.status === 500) {
-        console.log("there was a problem with the server");
+        setMessage("there was a problem with the server");
       } else {
-        console.log(err.response.data.msg);
+        setMessage(err.response.data.msg);
       }
     }
   };
