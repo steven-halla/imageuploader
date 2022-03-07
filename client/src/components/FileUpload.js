@@ -1,5 +1,6 @@
 import React , { useState } from 'react';
 import axios from 'axios';
+import {Message} from "./Message";
 
 export const FileUpload = () => {
   const [file, setFile] = useState('');
@@ -38,8 +39,9 @@ export const FileUpload = () => {
   };
 
   return (
-    <div onSubmit={onSubmit}>
-      <form action="">
+    <div >
+      {message ? <Message msg={message} /> : null }
+      <form onSubmit={onSubmit} action="">
         <div className="custom-file mb-4">
           <input type="file" className="custom-file-input" id="customFile" onChange={onChange}/>
           <label className="custom-file-label" htmlFor="customFile">
