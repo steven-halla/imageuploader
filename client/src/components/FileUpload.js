@@ -14,6 +14,16 @@ export const FileUpload = () => {
     event.preventDefault();
     const formData = new FormData();
     formData.append('file', file);
+
+    try {
+      const res = await axios.post('/upload', formData, {
+        headers: {
+          'content-Type': 'multipart/form-data'
+        }
+      });
+    }catch(err) {
+
+    }
   }
 
   return (
