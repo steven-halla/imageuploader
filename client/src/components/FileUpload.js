@@ -1,7 +1,7 @@
 import React , { useState } from 'react';
 import axios from 'axios';
-import {Message} from "./Message";
-import {Progress} from "./Progress";
+import { Message } from "./Message";
+import { Progress } from "./Progress";
 
 export const FileUpload = () => {
   const [file, setFile] = useState('');
@@ -59,9 +59,7 @@ export const FileUpload = () => {
             {filename}
           </label>
         </div>
-
         <Progress percentage={uploadPercentage}/>
-
         <input type="submit" value="Upload" className="btn btn-primary btn-block mt-4"/>
       </form>
       { uploadedFile ? <div className="row mt-5 " >
